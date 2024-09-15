@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include "../ball.h"
 
 using namespace std;
 
@@ -76,4 +77,12 @@ int main() {
     vector<int> c2 = c1;
     sort_wrapper(c1, bubble_sort<int>);
     sort_wrapper(c2, bubble_sort_optim<int>);
+
+    vector<algo::Ball> d1{
+        {2, algo::RED}, {0, algo::BLUE}, {1, algo::RED},
+        {1, algo::GREEN}, {3, algo::GREEN}
+    };
+    vector<algo::Ball> d2 = d1;
+    sort_wrapper(d1, bubble_sort<algo::Ball>);
+    sort_wrapper(d2, bubble_sort_optim<algo::Ball>);
 }
