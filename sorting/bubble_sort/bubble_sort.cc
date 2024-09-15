@@ -67,7 +67,7 @@ int main() {
     sort_wrapper(c2, bubble_sort_optim<int>);
 
     vector<algo::Ball> d1{
-        {2, algo::RED}, {0, algo::BLUE}, {1, algo::RED},
+        {2, algo::RED}, {0, algo::BLUE}, {2, algo::GREEN},
         {1, algo::GREEN}, {3, algo::GREEN}
     };
     vector<algo::Ball> d2 = d1;
