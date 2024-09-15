@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "../ball.h"
+#include "../common.h"
 
 using namespace std;
 
@@ -36,19 +37,6 @@ void bubble_sort_optim(vector<T> &arr, int &cmp_cnt, int &swap_cnt) {
         }
         if (ordered) break;
     }
-}
-
-template <typename T>
-ostream &operator<<(ostream& os, const vector<T> &arr) {
-    int len = arr.size();
-    for (int i=0; i<len; ++i) {
-        if (i == 0) {
-            os << arr[i];
-        } else {
-            os << ' ' << arr[i];
-        }
-    }
-    return os;
 }
 
 template <typename T, typename F>
