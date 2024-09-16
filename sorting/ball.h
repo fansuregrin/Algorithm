@@ -1,6 +1,7 @@
 #ifndef ALGO_BALL_H
 #define ALGO_BALL_H
 #include <iostream>
+#include <utility>
 
 namespace algo {
 
@@ -9,6 +10,9 @@ enum Color {RED, BLUE, GREEN };
 class Ball {
 public:
     friend std::ostream &operator<<(std::ostream &os, const Ball &ball);
+    friend void swap(Ball &x, Ball &y);
+
+    Ball() = default;
 
     Ball(int id, Color color) : m_id(id), m_color(color) {}
 
@@ -44,6 +48,11 @@ std::ostream &operator<<(std::ostream &os, const Color &color) {
 
 std::ostream &operator<<(std::ostream &os, const Ball &ball) {
     return os << "(" << ball.m_id << "," << ball.m_color << ")";
+}
+
+void swap(Ball &x, Ball &y) {
+    std::swap(x.m_id, y.m_id);
+    std::swap(x.m_color, y.m_color);
 }
 
 }
