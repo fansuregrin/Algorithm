@@ -56,12 +56,12 @@ int main() {
     vector<int> b1{0, 1, 2, 3, 4, 5, 6};
     vector<int> b2 = b1;
     sort_wrapper(b1, quick_sort<int>);
-    // sort_wrapper(b2, quick_sort<int>);
+    sort_wrapper(b2, quick_sort_optim<int>);
 
     vector<int> c1{6, 5, 4, 3, 2, 1, 0};
     vector<int> c2 = c1;
     sort_wrapper(c1, quick_sort<int>);
-    // sort_wrapper(c2, quick_sort<int>);
+    sort_wrapper(c2, quick_sort_optim<int>);
 
     vector<algo::Ball> d1{
         {2, algo::RED}, {0, algo::BLUE}, {3, algo::RED}, {2, algo::GREEN},
@@ -69,5 +69,5 @@ int main() {
     };
     vector<algo::Ball> d2 = d1;
     sort_wrapper(d1, quick_sort<algo::Ball>);
-    // sort_wrapper(d2, quick_sort<algo::Ball>);
+    sort_wrapper(d2, quick_sort_optim<algo::Ball>);
 }
