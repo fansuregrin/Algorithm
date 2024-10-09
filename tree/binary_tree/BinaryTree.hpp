@@ -36,6 +36,24 @@ public:
     ~BinaryTree() {
         destory(m_root);
     }
+
+    std::vector<T> preOrderTraverse() const {
+        std::vector<T> arr;
+        preOrder(m_root, arr);
+        return arr;
+    }
+
+    std::vector<T> inOrderTraverse() const {
+        std::vector<T> arr;
+        inOrder(m_root, arr);
+        return arr;
+    }
+
+    std::vector<T> postOrderTraverse() const {
+        std::vector<T> arr;
+        postOrder(m_root, arr);
+        return arr;
+    }
 private:
     static TreeNode<T> *create(const std::vector<std::string> &arr) {
         if (arr.empty()) return nullptr;
@@ -79,6 +97,27 @@ private:
             destory(root->right);
         }
         delete root;
+    }
+
+    static void preOrder(TreeNode<T> *root, std::vector<T> &arr) {
+        if (root == nullptr) return;
+        arr.push_back(root->val);
+        preOrder(root->left, arr);
+        preOrder(root->right, arr);
+    }
+
+    static void inOrder(TreeNode<T> *root, std::vector<T> &arr) {
+        if (root == nullptr) return;
+        inOrder(root->left, arr);
+        arr.push_back(root->val);
+        inOrder(root->right, arr);
+    }
+
+    static void postOrder(TreeNode<T> *root, std::vector<T> &arr) {
+        if (root == nullptr) return;
+        postOrder(root->left, arr);
+        postOrder(root->right, arr);
+        arr.push_back(root->val);
     }
 
     TreeNode<T> *m_root;
