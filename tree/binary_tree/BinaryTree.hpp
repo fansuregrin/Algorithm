@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <stack>
+#include <algorithm>
 
 template <typename T>
 struct TreeNode {
@@ -43,15 +45,71 @@ public:
         return arr;
     }
 
+    std::vector<T> preOrderTraverseNonRecur() const {
+        std::vector<T> arr;
+        std::stack<TreeNode<T> *> st;
+        TreeNode<T> * curr = m_root;
+        while (curr || !st.empty()) {
+            if (curr) {
+                arr.push_back(curr->val);
+                st.push(curr);
+                curr = curr->left;
+            } else {
+                curr = st.top();
+                st.pop();
+                curr = curr->right;
+            }
+        }
+        return arr;
+    }
+
     std::vector<T> inOrderTraverse() const {
         std::vector<T> arr;
         inOrder(m_root, arr);
         return arr;
     }
 
+    std::vector<T> inOrderTraverseNonRecur() const {
+        std::vector<T> arr;
+        std::stack<TreeNode<T> *> st;
+        TreeNode<T> * curr = m_root;
+        while (curr || !st.empty()) {
+            if (curr) {
+                st.push(curr);
+                curr = curr->left;
+            } else {
+                curr = st.top();
+                st.pop();
+                arr.push_back(curr->val);
+                curr = curr->right;
+            }
+        }
+        return arr;
+    }
+
     std::vector<T> postOrderTraverse() const {
         std::vector<T> arr;
         postOrder(m_root, arr);
+        return arr;
+    }
+
+    std::vector<T> postOrderTraverseNonRecur() const {
+        std::vector<T> arr;
+        std::stack<TreeNode<T> *> st;
+        TreeNode<T> * curr = m_root;
+        while (curr || !st.empty()) {
+            if (curr) {
+                arr.push_back(curr->val);
+                st.push(curr);
+                curr = curr->right;
+            } else {
+                curr = st.top();
+                st.pop();
+                curr = curr->left;
+            }
+        }
+
+        std::reverse(arr.begin(), arr.end());
         return arr;
     }
 private:

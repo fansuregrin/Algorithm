@@ -51,9 +51,25 @@ void testPreOrderTraverse(const BinaryTree<T> &tree, const vector<T> &ans) {
 }
 
 template <typename T>
+void testPreOrderTraverseNonRecur(const BinaryTree<T> &tree, const vector<T> &ans) {
+    auto res = tree.preOrderTraverseNonRecur();
+    cout << "preOrder(non-recursive): " << res << endl;
+    cout << "answer: " << ans << endl;
+    assert(res == ans);
+}
+
+template <typename T>
 void testInOrderTraverse(const BinaryTree<T> &tree, const vector<T> &ans) {
     auto res = tree.inOrderTraverse();
     cout << "inOrder: " << res << endl;
+    cout << "answer: " << ans << endl;
+    assert(res == ans);
+}
+
+template <typename T>
+void testInOrderTraverseNonRecur(const BinaryTree<T> &tree, const vector<T> &ans) {
+    auto res = tree.inOrderTraverseNonRecur();
+    cout << "inOrder(non-recursive): " << res << endl;
     cout << "answer: " << ans << endl;
     assert(res == ans);
 }
@@ -66,12 +82,23 @@ void testPostOrderTraverse(const BinaryTree<T> &tree, const vector<T> &ans) {
     assert(res == ans);
 }
 
+template <typename T>
+void testPostOrderTraverseNonRecur(const BinaryTree<T> &tree, const vector<T> &ans) {
+    auto res = tree.postOrderTraverseNonRecur();
+    cout << "postOrder(non-recursive): " << res << endl;
+    cout << "answer: " << ans << endl;
+    assert(res == ans);
+}
+
 int main() {
     auto n = inputs.size();
     for (decltype(n) i=0; i<n; ++i) {
         BinaryTree<int> t(inputs[i]);
         testPreOrderTraverse(t, pre_orders[i]);
+        testPreOrderTraverseNonRecur(t, pre_orders[i]);
         testInOrderTraverse(t, in_orders[i]);
+        testInOrderTraverseNonRecur(t, in_orders[i]);
         testPostOrderTraverse(t, post_orders[i]);
+        testPostOrderTraverseNonRecur(t, post_orders[i]);
     }
 }
