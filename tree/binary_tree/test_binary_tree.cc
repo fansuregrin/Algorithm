@@ -41,6 +41,12 @@ vector<vector<int>> post_orders = {
     {},
     {1},
 };
+vector<vector<int>> level_orders = {
+    {1, 2, 3},
+    {1, 2, 3, 4, 5, 8, 6, 7, 9},
+    {},
+    {1},  
+};
 
 template <typename T>
 void testPreOrderTraverse(const BinaryTree<T> &tree, const vector<T> &ans) {
@@ -90,6 +96,14 @@ void testPostOrderTraverseNonRecur(const BinaryTree<T> &tree, const vector<T> &a
     assert(res == ans);
 }
 
+template <typename T>
+void testLevelOrderTraverse(const BinaryTree<T> &tree, const vector<T> &ans) {
+    auto res = tree.levelOrderTraverse();
+    cout << "levelOrder: " << res << endl;
+    cout << "answer: " << ans << endl;
+    assert(res == ans);
+}
+
 int main() {
     auto n = inputs.size();
     for (decltype(n) i=0; i<n; ++i) {
@@ -100,5 +114,6 @@ int main() {
         testInOrderTraverseNonRecur(t, in_orders[i]);
         testPostOrderTraverse(t, post_orders[i]);
         testPostOrderTraverseNonRecur(t, post_orders[i]);
+        testLevelOrderTraverse(t, level_orders[i]);
     }
 }

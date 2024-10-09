@@ -112,6 +112,25 @@ public:
         std::reverse(arr.begin(), arr.end());
         return arr;
     }
+
+    std::vector<T> levelOrderTraverse() const {
+        std::vector<T> arr;
+        if (m_root == nullptr) return arr;
+        std::queue<TreeNode<T> *> q;
+        q.push(m_root);
+        while (!q.empty()) {
+            auto n = q.size();
+            for (decltype(n) i=0; i<n; ++i) {
+                TreeNode<T> *nd = q.front();
+                q.pop();
+                arr.push_back(nd->val);
+                if (nd->left) q.push(nd->left);
+                if (nd->right) q.push(nd->right);
+            }
+        }
+        return arr;
+    }
+
 private:
     static TreeNode<T> *create(const std::vector<std::string> &arr) {
         if (arr.empty()) return nullptr;
