@@ -26,6 +26,17 @@ public:
         m_num_buckets = n;
     }
 
+    ~HashTable() {
+        for (auto &i : m_buckets) {
+            _HtNode *curr = i;
+            while (curr) {
+                _HtNode *tmp = curr;
+                curr = curr->next;
+                delete tmp;
+            }
+        }
+    }
+
     bool find(const Key &key, Val &result) const {
         size_type idx = m_hash(key) % m_num_buckets;
         _HtNode *curr = m_buckets[idx];
