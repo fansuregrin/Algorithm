@@ -5,6 +5,7 @@ struct HtNode {
     HtNode * next;
     Val val;
 
+    HtNode() {}
     HtNode(Val value) : val(value) {}
 };
 
@@ -48,6 +49,21 @@ public:
             curr = curr->next;
         }
         return false;
+    }
+
+    Val &operator[](const Key &key) {
+        size_type idx = m_hash(key) % m_num_buckets;
+        _HtNode *curr = m_buckets[idx];
+        while (curr) {
+            if (m_get_key(curr->val) == key) {
+                return curr->val;
+            }
+            curr = curr->next;
+        }
+        _HtNode *nd = new _HtNode();
+        nd->next = m_buckets[idx];
+        m_buckets[idx] = nd;
+        return nd->val;
     }
 
     void insert(const Val &value) {
