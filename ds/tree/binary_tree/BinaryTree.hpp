@@ -131,6 +131,9 @@ public:
         return arr;
     }
 
+    const TreeNode<T> * getRoot() const {
+        return m_root;
+    }
 private:
     static TreeNode<T> *create(const std::vector<std::string> &arr) {
         if (arr.empty()) return nullptr;
